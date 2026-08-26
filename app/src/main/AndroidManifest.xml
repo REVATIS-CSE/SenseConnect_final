@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- =============================== -->
+    <!-- Bluetooth permissions            -->
+    <!-- =============================== -->
+
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_CONNECT" />
+
+
+    <!-- =============================== -->
+    <!-- Camera permission                 -->
+    <!-- Used by Vision Assistance         -->
+    <!-- =============================== -->
+
+    <uses-permission
+        android:name="android.permission.CAMERA" />
+
+
+    <!-- =============================== -->
+    <!-- Microphone permission             -->
+    <!-- Used by Hearing Assistance       -->
+    <!-- =============================== -->
+
+    <uses-permission
+        android:name="android.permission.RECORD_AUDIO" />
+
+
+    <!-- =============================== -->
+    <!-- Application                       -->
+    <!-- =============================== -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SenseConnect">
+
+
+        <!-- =============================== -->
+        <!-- Main / Home Activity              -->
+        <!-- =============================== -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+
+        </activity>
+
+
+        <!-- =============================== -->
+        <!-- Vision Assistance                 -->
+        <!-- Camera + OCR                      -->
+        <!-- =============================== -->
+
+        <activity
+            android:name=".BlindActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- =============================== -->
+        <!-- Hearing Assistance                -->
+        <!-- Speech to Text                    -->
+        <!-- =============================== -->
+
+        <activity
+            android:name=".DeafActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- =============================== -->
+        <!-- Communication                    -->
+        <!-- Text to Speech                    -->
+        <!-- =============================== -->
+
+        <activity
+            android:name=".SpeechActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- =============================== -->
+        <!-- SOS Emergency                    -->
+        <!-- =============================== -->
+
+        <activity
+            android:name=".EmergencyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+    </application>
+
+</manifest>

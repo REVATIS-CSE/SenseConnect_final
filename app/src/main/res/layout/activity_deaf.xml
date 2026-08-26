@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvHearingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="👂 Hearing Assistance"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvHearingSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Convert spoken words into readable text"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnStartListening"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:text="🎤  START LISTENING"
+            android:textSize="17sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvListeningStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Press Start Listening to begin"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvRecognizedLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recognized Speech"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvRecognizedText"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:text="No speech recognized yet."
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:gravity="top"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnClearSpeech"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="CLEAR"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnDeafBack"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="← BACK"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>

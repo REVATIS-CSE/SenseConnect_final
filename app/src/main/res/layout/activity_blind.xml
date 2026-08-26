@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvVisionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="👁 Vision Assistance"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvVisionSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera-based assistance for reading and recognition"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Camera placeholder -->
+        <FrameLayout
+            android:id="@+id/cameraContainer"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#202124"
+            android:layout_marginBottom="20dp">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/previewView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <!-- Read Text -->
+        <Button
+            android:id="@+id/btnReadText"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="📖  READ TEXT"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Detected text label -->
+        <TextView
+            android:id="@+id/tvDetectedLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detected Text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <!-- Detected text -->
+        <TextView
+            android:id="@+id/tvDetectedText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No text detected yet."
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Read aloud -->
+        <Button
+            android:id="@+id/btnReadAloud"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="🔊  READ ALOUD"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Back -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="← BACK"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvEmergencyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🚨 SOS Emergency"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvEmergencySubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency assistance and location sharing"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnSos"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="🚨  PRESS SOS"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/tvEmergencyStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency status: Ready"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvLocationLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Location"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location not available yet."
+            android:textSize="17sp"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvEmergencyMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency message will appear here."
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnGetLocation"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="📍 GET MY LOCATION"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnEmergencyBack"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="← BACK"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>

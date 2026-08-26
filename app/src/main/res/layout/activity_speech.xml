@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvCommunicationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🗣 Communication"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvCommunicationSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select a phrase to communicate"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnHelp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="🆘  I NEED HELP"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnWater"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="💧  I NEED WATER"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="🏥  I NEED A DOCTOR"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnFood"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="🍴  I NEED FOOD"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="👍  YES"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="👎  NO"
+            android:textSize="17sp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/tvSelectedPhrase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selected phrase will appear here"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnSpeak"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="🔊  SPEAK"
+            android:textSize="17sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnSpeechBack"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="← BACK"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>
