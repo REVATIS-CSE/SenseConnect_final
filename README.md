@@ -141,7 +141,7 @@ npm start       # http://localhost:3000/health
 Requirements: Android Studio (bundled JBR 21), Android SDK 36. The build configuration is pinned and must not be changed: AGP 9.1.0, Gradle 9.4.1, Java 21, configuration cache off.
 
 ```bash
-./gradlew clean assembleDebug          # APK: app/build/outputs/apk/debug/app-debug.apk
+./gradlew clean assembleDebug          # APKs in app/build/outputs/apk/debug/
 ./gradlew testDebugUnitTest            # unit tests
 ```
 
@@ -170,13 +170,26 @@ The free plan sleeps after inactivity. The first request can take 30–60 s, so 
 
 ## 10. Install on an Android phone
 
+The build produces `app-arm64-v8a-debug.apk` (~24 MB, for almost every modern phone) and `app-universal-debug.apk` (~55 MB, works on any device or emulator).
+
+### Without a USB cable (recommended for demos)
+
+1. Send the APK to the phone: OneDrive / Google Drive, email it to yourself, or WhatsApp "Message yourself".
+2. On the phone, open the downloaded file and tap **Install**. The first time, Android asks you to allow the app you opened it from (Drive, Files, Chrome, …) to **install unknown apps**: tap **Settings**, turn it on, then press back.
+3. If Play Protect warns that the app is unknown, tap **More details → Install anyway** (the APK is signed with the development key rather than a Play Store key).
+4. Open **SenseConnect**, complete onboarding and allow the permissions.
+
+To update later, install the new APK the same way; your settings and history are kept.
+
+### With USB / Wi-Fi debugging
+
 1. On the phone, open **Settings → About phone** and tap **Build number** seven times to enable Developer options.
 2. Open **Settings → System → Developer options** and enable **USB debugging**.
 3. Connect the phone by USB and accept the "Allow USB debugging?" prompt.
 4. From the project folder, run:
    ```bash
    adb devices
-   adb install -r app/build/outputs/apk/debug/app-debug.apk
+   adb install -r app/build/outputs/apk/debug/app-arm64-v8a-debug.apk
    ```
    Alternatively, press **Run** in Android Studio with the phone selected, or copy the APK to the phone and open it (allow "Install unknown apps").
 5. Launch **SenseConnect**, complete onboarding and allow the permissions.
@@ -205,7 +218,7 @@ The free plan sleeps after inactivity. The first request can take 30–60 s, so 
 - **Calls** open the dialer pre-filled; Android requires the user to press Call.
 - **Backend storage is in-memory**: incidents are lost if the Render instance restarts (and expire after 24 h by design). Add Render Postgres for durable storage.
 - Render's free plan sleeps when idle, so the first request is slow.
-- The debug APK is about 60 MB because it includes the bundled OCR model for every CPU architecture. A release App Bundle would be much smaller per device.
+- The OCR model is bundled for offline use, so the phone APK is about 24 MB (universal APK about 55 MB).
 - English UI only.
 
 ## 14. Future enhancements
