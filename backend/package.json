@@ -1,0 +1,17 @@
+{
+  "name": "senseconnect-backend",
+  "version": "1.0.0",
+  "description": "SenseConnect cloud API: health, remote configuration and emergency incident logging.",
+  "main": "src/server.js",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reusable empty / error / permission state: icon, title, explanation and one action. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/stateRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:accessibilityLiveRegion="polite"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/stateIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_circle"
+        android:importantForAccessibility="no"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/stateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.SenseConnect.Title" />
+
+    <TextView
+        android:id="@+id/stateBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.SenseConnect.Supporting" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/stateAction"
+        style="@style/Widget.SenseConnect.Button.Tonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:iconGravity="textStart" />
+</LinearLayout>

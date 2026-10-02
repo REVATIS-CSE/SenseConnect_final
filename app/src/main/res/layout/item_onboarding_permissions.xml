@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_perm_overline"
+            android:textAppearance="@style/TextAppearance.SenseConnect.Overline"
+            android:textColor="?attr/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:accessibilityHeading="true"
+            android:text="@string/onboarding_perm_title"
+            android:textAppearance="@style/TextAppearance.SenseConnect.ScreenTitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/onboarding_perm_body"
+            android:textAppearance="@style/TextAppearance.SenseConnect.Supporting" />
+
+        <include
+            android:id="@+id/permCamera"
+            layout="@layout/item_permission_card" />
+
+        <include
+            android:id="@+id/permMic"
+            layout="@layout/item_permission_card" />
+
+        <include
+            android:id="@+id/permLocation"
+            layout="@layout/item_permission_card" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="10dp"
+            android:drawableTint="?attr/colorOnSurfaceVariant"
+            android:text="@string/onboarding_perm_privacy"
+            android:textAppearance="@style/TextAppearance.SenseConnect.Caption" />
+    </LinearLayout>
+</ScrollView>

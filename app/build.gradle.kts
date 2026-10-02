@@ -2,11 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+// Base URL of the SenseConnect backend hosted on Render.
+// Override without editing code:  ./gradlew assembleDebug -Psenseconnect.apiBaseUrl=https://example.onrender.com/
+val apiBaseUrl: String = providers.gradleProperty("senseconnect.apiBaseUrl")
+    .getOrElse("https://senseconnect-api.onrender.com/")
+
 android {
     namespace = "com.example.senseconnect"
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     compileSdk {
@@ -19,8 +25,10 @@ android {
         applicationId = "com.example.senseconnect"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0.0"
+
+        buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
 
         testInstrumentationRunner =
             "androidx.test.runner.AndroidJUnitRunner"
@@ -47,7 +55,16 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewpager2)
     implementation(libs.material)
+
+    // Lifecycle / ViewModel / Coroutines
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.coroutines.android)
 
     // CameraX
     implementation(libs.androidx.camera.camera2)
@@ -55,7 +72,7 @@ dependencies {
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
 
-    // ML Kit Text Recognition
+    // ML Kit Text Recognition - bundled model, so OCR works offline from first launch
     implementation(libs.mlkit.text.recognition)
 
     // GPS / Location

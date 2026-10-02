@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="indicator_dot">8dp</dimen>
+    <dimen name="indicator_active">24dp</dimen>
+    <dimen name="sos_button_size">220dp</dimen>
+    <dimen name="scan_frame_corner">22dp</dimen>
+</resources>

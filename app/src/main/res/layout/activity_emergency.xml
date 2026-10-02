@@ -1,96 +1,463 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- SOS Emergency: Location → Emergency message → SMS · Call · Share (+ cloud incident log) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_feature_toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false">
 
-        <TextView
-            android:id="@+id/tvEmergencyTitle"
+        <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🚨 SOS Emergency"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="8dp" />
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp">
 
-        <TextView
-            android:id="@+id/tvEmergencySubtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emergency assistance and location sharing"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:layout_marginBottom="24dp" />
+            <!-- ============ Status banner ============ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bannerCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:strokeWidth="0dp">
 
-        <Button
-            android:id="@+id/btnSos"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:text="🚨  PRESS SOS"
-            android:textSize="20sp"
-            android:layout_marginBottom="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
 
-        <TextView
-            android:id="@+id/tvEmergencyStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emergency status: Ready"
-            android:textSize="17sp"
-            android:gravity="center"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp" />
+                    <ImageView
+                        android:id="@+id/ivBanner"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:importantForAccessibility="no" />
 
-        <TextView
-            android:id="@+id/tvLocationLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Current Location"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:accessibilityLiveRegion="assertive"
+                        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location not available yet."
-            android:textSize="17sp"
-            android:padding="16dp"
-            android:background="#EEEEEE"
-            android:layout_marginBottom="16dp" />
+                        <TextView
+                            android:id="@+id/tvBannerOverline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sos_status"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Overline" />
 
-        <TextView
-            android:id="@+id/tvEmergencyMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emergency message will appear here."
-            android:textSize="16sp"
-            android:padding="16dp"
-            android:background="#EEEEEE"
-            android:layout_marginBottom="16dp" />
+                        <TextView
+                            android:id="@+id/tvBannerTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.ScreenTitle"
+                            tools:text="READY" />
 
-        <Button
-            android:id="@+id/btnGetLocation"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="📍 GET MY LOCATION"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
+                        <TextView
+                            android:id="@+id/tvBannerBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Supporting"
+                            tools:text="Emergency assistance is ready." />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        <Button
-            android:id="@+id/btnEmergencyBack"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="← BACK"
-            android:textSize="16sp" />
+            <!-- ============ READY: hold-to-send ============ -->
+            <LinearLayout
+                android:id="@+id/readySection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <com.example.senseconnect.ui.emergency.HoldToActivateButton
+                    android:id="@+id/btnHold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp" />
 
-</ScrollView>
+                <TextView
+                    android:id="@+id/tvHoldHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:accessibilityLiveRegion="polite"
+                    android:gravity="center"
+                    android:text="@string/sos_hold_hint"
+                    android:textAppearance="@style/TextAppearance.SenseConnect.Title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@string/sos_hold_explain"
+                    android:textAppearance="@style/TextAppearance.SenseConnect.Supporting" />
+
+                <!-- Countdown (after hold) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelCountdown"
+                    style="@style/Widget.SenseConnect.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/sos_cancel"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_close"
+                    app:iconGravity="textStart" />
+            </LinearLayout>
+
+            <!-- ============ ACTIVE: delivery status + actions ============ -->
+            <LinearLayout
+                android:id="@+id/activeSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SenseConnect.SectionHeader"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/sos_delivery" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include
+                            android:id="@+id/rowSms"
+                            layout="@layout/item_sos_status_row" />
+
+                        <include layout="@layout/view_divider" />
+
+                        <include
+                            android:id="@+id/rowCloud"
+                            layout="@layout/item_sos_status_row" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    style="@style/SenseConnect.SectionHeader"
+                    android:text="@string/sos_actions" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCallContact"
+                        style="@style/Widget.SenseConnect.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/call_contact"
+                        app:icon="@drawable/ic_call" />
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSendSms"
+                        style="@style/Widget.SenseConnect.Button.Tonal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/send_sms"
+                        app:icon="@drawable/ic_sms" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnShareLocation"
+                        style="@style/Widget.SenseConnect.Button.Tonal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/share"
+                        app:icon="@drawable/ic_share" />
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAlarm"
+                        style="@style/Widget.SenseConnect.Button.Tonal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/sound_alarm"
+                        app:icon="@drawable/ic_notifications_active" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEndSos"
+                    style="@style/Widget.SenseConnect.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/sos_end"
+                    app:icon="@drawable/ic_verified_user" />
+            </LinearLayout>
+
+            <!-- ============ Emergency services (always available) ============ -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCallEmergency"
+                style="@style/Widget.SenseConnect.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="?attr/colorPrimary"
+                app:icon="@drawable/ic_phone_in_talk"
+                app:iconTint="?attr/colorPrimary"
+                app:strokeColor="?attr/colorPrimary"
+                tools:text="Call emergency services (112)" />
+
+            <!-- ============ Readiness checklist ============ -->
+            <TextView
+                android:id="@+id/headerReadiness"
+                style="@style/SenseConnect.SectionHeader"
+                android:text="@string/sos_readiness" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/readinessCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/rowContact"
+                        layout="@layout/item_sos_status_row" />
+
+                    <include layout="@layout/view_divider" />
+
+                    <include
+                        android:id="@+id/rowSmsMode"
+                        layout="@layout/item_sos_status_row" />
+
+                    <include layout="@layout/view_divider" />
+
+                    <include
+                        android:id="@+id/rowCloudMode"
+                        layout="@layout/item_sos_status_row" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ============ Location ============ -->
+            <TextView
+                style="@style/SenseConnect.SectionHeader"
+                android:text="@string/sos_location" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/SenseConnect.IconTile"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_tile"
+                            android:backgroundTint="@color/sc_success_container"
+                            android:padding="9dp"
+                            android:src="@drawable/ic_my_location"
+                            app:tint="@color/sc_on_success_container" />
+
+                        <TextView
+                            android:id="@+id/tvLocationTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:accessibilityLiveRegion="polite"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Title"
+                            tools:text="Location available" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/locationProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:indicatorSize="20dp"
+                            app:trackThickness="2dp" />
+                    </LinearLayout>
+
+                    <!-- Coordinates grid -->
+                    <GridLayout
+                        android:id="@+id/locationGrid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:columnCount="2"
+                        android:useDefaultMargins="false">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/latitude"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Caption" />
+
+                        <TextView
+                            android:id="@+id/tvLat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                            tools:text="12.97160" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/longitude"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Caption" />
+
+                        <TextView
+                            android:id="@+id/tvLng"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="monospace"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                            tools:text="77.59456" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/accuracy"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Caption" />
+
+                        <TextView
+                            android:id="@+id/tvAccuracy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                            tools:text="± 12 m" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/last_updated"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Caption" />
+
+                        <TextView
+                            android:id="@+id/tvUpdated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                            tools:text="14:32:05" />
+                    </GridLayout>
+
+                    <TextView
+                        android:id="@+id/tvLocationMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="@style/TextAppearance.SenseConnect.Supporting"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLocationAction"
+                            style="@style/Widget.SenseConnect.Button.Tonal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/refresh"
+                            app:icon="@drawable/ic_refresh" />
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="0dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnOpenMaps"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/open_maps"
+                            app:icon="@drawable/ic_location_on" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ============ Message preview ============ -->
+            <TextView
+                style="@style/SenseConnect.SectionHeader"
+                android:text="@string/sos_message" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                    android:textIsSelectable="true"
+                    tools:text="EMERGENCY: I need help." />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:accessibilityHeading="true"
+            android:text="@string/nav_settings"
+            android:textAppearance="@style/TextAppearance.SenseConnect.ScreenTitle"
+            tools:targetApi="p" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_subtitle"
+            android:textAppearance="@style/TextAppearance.SenseConnect.Supporting" />
+
+        <!-- ================= Accessibility ================= -->
+        <TextView
+            style="@style/SenseConnect.SectionHeader"
+            android:text="@string/settings_accessibility" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:id="@+id/labelTextSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_format_size"
+                        android:drawablePadding="16dp"
+                        android:drawableTint="?attr/colorOnSurfaceVariant"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/setting_text_size"
+                        android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/toggleTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTextDefault"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/text_size_default" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTextLarge"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/text_size_large" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTextXLarge"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/text_size_xlarge" />
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/text_size_hint"
+                        android:textAppearance="@style/TextAppearance.SenseConnect.Caption" />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:id="@+id/labelTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_dark_mode"
+                        android:drawablePadding="16dp"
+                        android:drawableTint="?attr/colorOnSurfaceVariant"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/setting_theme"
+                        android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/toggleTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnThemeSystem"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/theme_system" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnThemeLight"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/theme_light" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnThemeDark"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/theme_dark" />
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+                </LinearLayout>
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowHighContrast"
+                    layout="@layout/item_setting_switch" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowReduceMotion"
+                    layout="@layout/item_setting_switch" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowVoiceFeedback"
+                    layout="@layout/item_setting_switch" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowHaptics"
+                    layout="@layout/item_setting_switch" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= Speech ================= -->
+        <TextView
+            style="@style/SenseConnect.SectionHeader"
+            android:text="@string/settings_speech" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingEnd="18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_speed"
+                            android:drawablePadding="16dp"
+                            android:drawableTint="?attr/colorOnSurfaceVariant"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:text="@string/setting_speech_rate"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvRateValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Status"
+                            tools:text="1.0×" />
+                    </LinearLayout>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/sliderRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/setting_speech_rate"
+                        android:stepSize="0.1"
+                        android:valueFrom="0.5"
+                        android:valueTo="2.0" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_tune"
+                            android:drawablePadding="16dp"
+                            android:drawableTint="?attr/colorOnSurfaceVariant"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:text="@string/setting_pitch"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Body"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvPitchValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Status"
+                            tools:text="1.0×" />
+                    </LinearLayout>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/sliderPitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/setting_pitch"
+                        android:stepSize="0.1"
+                        android:valueFrom="0.5"
+                        android:valueTo="2.0" />
+
+                    <TextView
+                        android:id="@+id/tvVoiceEngine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.SenseConnect.Caption"
+                        tools:text="Voice engine: English (United States)" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTestVoice"
+                            style="@style/Widget.SenseConnect.Button.Tonal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/test_voice"
+                            app:icon="@drawable/ic_volume_up" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="0dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnVoiceSettings"
+                            style="@style/Widget.SenseConnect.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/voice_settings"
+                            app:icon="@drawable/ic_settings" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowSpeakOnTap"
+                    layout="@layout/item_setting_switch" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowAutoRead"
+                    layout="@layout/item_setting_switch" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= Emergency ================= -->
+        <TextView
+            style="@style/SenseConnect.SectionHeader"
+            android:text="@string/settings_emergency" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/rowContact"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowPickContact"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowMessage"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowDirectSms"
+                    layout="@layout/item_setting_switch" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowCloudLogging"
+                    layout="@layout/item_setting_switch" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= Permissions ================= -->
+        <TextView
+            style="@style/SenseConnect.SectionHeader"
+            android:text="@string/settings_permissions" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/rowPermCamera"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowPermMic"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowPermLocation"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowPermSms"
+                    layout="@layout/item_setting_action" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= Cloud & About ================= -->
+        <TextView
+            style="@style/SenseConnect.SectionHeader"
+            android:text="@string/settings_about" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/rowBackend"
+                    layout="@layout/item_setting_action" />
+
+                <include layout="@layout/view_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_brand_gradient"
+                        android:importantForAccessibility="no"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_logo_mark"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_name"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Title" />
+
+                        <TextView
+                            android:id="@+id/tvVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Caption"
+                            tools:text="Version 2.0.0 (2)" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/motto"
+                            android:textAppearance="@style/TextAppearance.SenseConnect.Status"
+                            android:textColor="?attr/colorPrimary" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="12dp"
+                    android:text="@string/about_body"
+                    android:textAppearance="@style/TextAppearance.SenseConnect.Supporting" />
+
+                <include layout="@layout/view_divider" />
+
+                <include
+                    android:id="@+id/rowReplayIntro"
+                    layout="@layout/item_setting_action" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

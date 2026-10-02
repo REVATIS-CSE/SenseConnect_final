@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Communication: Phrase board / typed message → Text-to-speech → Spoken aloud -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_feature_toolbar" />
+
+    <!-- Message display -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/messageCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/sc_tertiary_container"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/tvMessageLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comm_message_label"
+                android:textAppearance="@style/TextAppearance.SenseConnect.Overline"
+                android:textColor="@color/sc_on_tertiary_container" />
+
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:accessibilityLiveRegion="polite"
+                android:minHeight="64dp"
+                android:textAppearance="@style/TextAppearance.SenseConnect.Caption.Live"
+                android:textColor="@color/sc_on_tertiary_container"
+                tools:text="I need a doctor." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSpeak"
+                    style="@style/Widget.SenseConnect.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/speak"
+                    android:textColor="@color/sc_on_tertiary"
+                    app:backgroundTint="@color/sc_tertiary"
+                    app:icon="@drawable/ic_volume_up"
+                    app:iconTint="@color/sc_on_tertiary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShow"
+                    style="@style/Widget.SenseConnect.Button.IconOnly"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/show_full_screen"
+                    app:icon="@drawable/ic_text_fields"
+                    app:iconTint="@color/sc_on_tertiary_container"
+                    app:strokeColor="@color/sc_on_tertiary_container" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCopy"
+                    style="@style/Widget.SenseConnect.Button.IconOnly"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/copy"
+                    app:icon="@drawable/ic_content_copy"
+                    app:iconTint="@color/sc_on_tertiary_container"
+                    app:strokeColor="@color/sc_on_tertiary_container" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFavorite"
+                    style="@style/Widget.SenseConnect.Button.IconOnly"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/add_favourite"
+                    app:icon="@drawable/ic_favorite_border"
+                    app:iconTint="@color/sc_on_tertiary_container"
+                    app:strokeColor="@color/sc_on_tertiary_container" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Always-visible quick responses -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnYes"
+            style="@style/Widget.SenseConnect.Button.Tonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/yes"
+            app:backgroundTint="@color/sc_success_container"
+            android:textColor="@color/sc_on_success_container"
+            app:icon="@drawable/ic_thumb_up"
+            app:iconTint="@color/sc_on_success_container" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNo"
+            style="@style/Widget.SenseConnect.Button.Tonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/no"
+            app:backgroundTint="@color/sc_emergency_container"
+            android:textColor="@color/sc_on_emergency_container"
+            app:icon="@drawable/ic_thumb_down"
+            app:iconTint="@color/sc_on_emergency_container" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWait"
+            style="@style/Widget.SenseConnect.Button.Tonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/wait"
+            app:icon="@drawable/ic_hourglass_empty" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/categoryChips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true" />
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/phraseGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp" />
+
+        <include
+            android:id="@+id/emptyState"
+            layout="@layout/view_state_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- Type your own message -->
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainerLowest"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/typeLayout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/comm_type_hint"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textCapSentences"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUseTyped"
+            style="@style/Widget.SenseConnect.Button.Tonal"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/speak_typed"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            app:icon="@drawable/ic_volume_up"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
+    </LinearLayout>
+</LinearLayout>
