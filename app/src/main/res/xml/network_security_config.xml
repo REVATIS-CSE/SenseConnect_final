@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- HTTPS everywhere. Cleartext is allowed only for local development servers
-     (emulator host loopback 10.0.2.2 and localhost), never for the Render backend. -->
+<!-- PRODUCTION: HTTPS only, no exceptions. All backend traffic goes to
+     https://senseconnect-api.onrender.com/ (see BuildConfig.API_BASE_URL). -->
 <network-security-config>
     <base-config cleartextTrafficPermitted="false" />
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="false">10.0.2.2</domain>
-        <domain includeSubdomains="false">localhost</domain>
-    </domain-config>
 </network-security-config>

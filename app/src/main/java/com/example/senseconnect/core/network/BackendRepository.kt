@@ -4,14 +4,23 @@ import android.content.SharedPreferences
 import android.os.SystemClock
 import androidx.core.content.edit
 import com.example.senseconnect.core.location.LocationFix
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import org.json.JSONObject
+import java.io.IOException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import javax.net.ssl.SSLException
 
 sealed interface BackendStatus {
     data object Unknown : BackendStatus
     data object Checking : BackendStatus
+    /** Health check is taking long - typically a Render free instance waking from sleep. */
+    data object Waking : BackendStatus
     data class Online(val latencyMs: Long, val version: String, val checkedAt: Long) : BackendStatus
     data class Offline(val reason: String) : BackendStatus
 }
@@ -58,28 +67,48 @@ class BackendRepository(
     private val _config = MutableStateFlow(readCachedConfig())
     val config: StateFlow<RemoteConfig> = _config.asStateFlow()
 
-    suspend fun refreshHealth(): BackendStatus {
+    /**
+     * GET {baseUrl}/health. Shows Checking, then Waking if the server is slow to answer (a sleeping
+     * Render instance needs ~30-60 s), then Online or Offline with a human-readable reason.
+     */
+    suspend fun refreshHealth(): BackendStatus = coroutineScope {
         if (!network.online.value) {
-            return BackendStatus.Offline("No internet connection").also { _status.value = it }
+            return@coroutineScope BackendStatus.Offline("No internet connection").also { _status.value = it }
         }
         _status.value = BackendStatus.Checking
+        val wakingHint = launch {
+            delay(WAKING_HINT_MS)
+            if (_status.value == BackendStatus.Checking) _status.value = BackendStatus.Waking
+        }
         val started = SystemClock.elapsedRealtime()
         val result = try {
             val json = api.get("health")
-            if (json.optString("status") == "ok") {
+            if (json.optString("status") == "ok" && json.optString("service") == "SenseConnect") {
                 BackendStatus.Online(
                     latencyMs = SystemClock.elapsedRealtime() - started,
                     version = json.optString("version", "?"),
                     checkedAt = System.currentTimeMillis(),
                 )
             } else {
-                BackendStatus.Offline("Unexpected health response")
+                BackendStatus.Offline("Unexpected response from server")
             }
         } catch (e: Exception) {
-            BackendStatus.Offline(e.message ?: "Server unreachable")
+            BackendStatus.Offline(describe(e))
+        } finally {
+            wakingHint.cancel()
         }
         _status.value = result
-        return result
+        result
+    }
+
+    /** Maps network exceptions to messages a user can act on. */
+    private fun describe(e: Exception): String = when (e) {
+        is SocketTimeoutException -> "Server did not respond in time (it may still be waking up)"
+        is UnknownHostException -> "Cannot reach the server - check your internet connection"
+        is SSLException -> "Secure (HTTPS) connection failed"
+        is ApiException -> if ((e.statusCode ?: 0) >= 500) "Server error (HTTP ${e.statusCode})" else e.message ?: "Request rejected"
+        is IOException -> "Connection failed - ${e.message ?: "network error"}"
+        else -> e.message ?: "Server unreachable"
     }
 
     suspend fun refreshConfig() {
@@ -112,7 +141,11 @@ class BackendRepository(
                     .put("accuracy", location.accuracyMeters?.toDouble() ?: JSONObject.NULL)
             )
         }
-        val json = api.post("api/v1/incidents", body)
+        val json = try {
+            api.post("api/v1/incidents", body)
+        } catch (e: Exception) {
+            throw IOException(describe(e), e)
+        }
         IncidentReceipt(id = json.getString("id"), receivedAt = json.optString("receivedAt"))
     }
 
@@ -141,5 +174,6 @@ class BackendRepository(
 
     private companion object {
         const val KEY_CONFIG = "remote_config"
+        const val WAKING_HINT_MS = 4_000L
     }
 }

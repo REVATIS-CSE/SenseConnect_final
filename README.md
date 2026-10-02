@@ -114,7 +114,7 @@ render.yaml                     Render Blueprint
 
 ## 6. Backend API (Render)
 
-Base URL: configured at build time (see §8). All responses are JSON.
+Base URL: `https://senseconnect-api.onrender.com/` (see §8). All responses are JSON.
 
 | Method | Path | Purpose |
 |---|---|---|
@@ -147,16 +147,20 @@ Requirements: Android Studio (bundled JBR 21), Android SDK 36. The build configu
 
 ## 8. Backend URL configuration
 
-`app/build.gradle.kts` reads the Gradle property `senseconnect.apiBaseUrl` into `BuildConfig.API_BASE_URL`. The default is the Render URL. To override it:
+**Production backend:** `https://senseconnect-api.onrender.com/`
+
+- `app/build.gradle.kts` defines `productionApiBaseUrl`. **Release** builds always use it; **debug** builds use it too unless a developer explicitly opts into a local server.
+- The URL reaches the code only as `BuildConfig.API_BASE_URL`, used solely by `ApiClient` → `BackendRepository`. No Activity or Fragment makes network calls.
+- `src/main/res/xml/network_security_config.xml` is **HTTPS-only with no exceptions**. A separate debug-only override (`src/debug/res/xml/network_security_config.xml`) allows plain HTTP to `10.0.2.2`/`localhost` for local development; it is never packaged in release builds.
 
 ```bash
-# Production (Render):
-./gradlew assembleDebug -Psenseconnect.apiBaseUrl=https://<your-service>.onrender.com/
-# Local backend from the emulator:
-./gradlew assembleDebug -Psenseconnect.apiBaseUrl=http://10.0.2.2:3000/
+# Normal build -> talks to Render over HTTPS
+./gradlew assembleDebug
+# Local development only (emulator -> backend running on the PC):
+./gradlew assembleDebug -Psenseconnect.devApiBaseUrl=http://10.0.2.2:3000/
 ```
 
-Cleartext HTTP is blocked everywhere except `10.0.2.2` and `localhost` (`res/xml/network_security_config.xml`).
+**Cloud status in the app:** *Connecting…* → *Waking server…* (after 4 s, while a sleeping Render free instance starts) → **Cloud Online** or **Cloud Offline** with a reason (no internet, timeout, DNS, HTTPS or server error). Tap the Service Status row or *Settings → SenseConnect Cloud* to retry. The app also re-checks automatically when the phone reconnects to the internet.
 
 ## 9. Deploy the backend to Render
 

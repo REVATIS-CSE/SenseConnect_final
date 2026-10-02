@@ -14,6 +14,8 @@ import com.example.senseconnect.ui.communication.PhraseRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 /**
@@ -46,6 +48,13 @@ class AppContainer(context: Context) {
         appScope.launch {
             backend.refreshHealth()
             backend.refreshConfig()
+        }
+        // Re-check the cloud automatically whenever the phone regains internet.
+        appScope.launch {
+            network.online.drop(1).filter { it }.collect {
+                backend.refreshHealth()
+                backend.refreshConfig()
+            }
         }
     }
 }

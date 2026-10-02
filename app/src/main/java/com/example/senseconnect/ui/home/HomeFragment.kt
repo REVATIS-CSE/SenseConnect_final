@@ -165,6 +165,7 @@ class HomeFragment : Fragment() {
         tvHeroCloud.text = when (state.backend) {
             is BackendStatus.Online -> getString(R.string.cloud_online)
             BackendStatus.Checking, BackendStatus.Unknown -> getString(R.string.cloud_checking)
+            BackendStatus.Waking -> getString(R.string.cloud_waking)
             is BackendStatus.Offline -> getString(R.string.cloud_offline)
         }
         tvHeroCloud.contentDescription = getString(R.string.cd_cloud_status, tvHeroCloud.text)

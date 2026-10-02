@@ -106,11 +106,13 @@ class ServiceStatusRepository(
             return base.copy(detail = "Offline - assistive features still work", stateLabel = "Offline", tone = Tone.NEUTRAL, iconRes = R.drawable.ic_cloud_off, fix = FixAction.RETRY_CLOUD)
         }
         return when (val s = backend.status.value) {
-            is BackendStatus.Online -> base.copy(detail = "Connected · ${s.latencyMs} ms", stateLabel = "Online")
+            is BackendStatus.Online -> base.copy(detail = "Connected over HTTPS · ${s.latencyMs} ms", stateLabel = "Online")
             BackendStatus.Checking, BackendStatus.Unknown ->
-                base.copy(detail = "Contacting server", stateLabel = "Checking", tone = Tone.INFO, iconRes = R.drawable.ic_cloud_queue)
+                base.copy(detail = "Contacting server", stateLabel = "Connecting", tone = Tone.INFO, iconRes = R.drawable.ic_cloud_queue)
+            BackendStatus.Waking ->
+                base.copy(detail = "Server is waking up - this can take up to a minute", stateLabel = "Waking", tone = Tone.INFO, iconRes = R.drawable.ic_cloud_queue)
             is BackendStatus.Offline ->
-                base.copy(detail = "Unreachable - tap to retry", stateLabel = "Offline", tone = Tone.NEUTRAL, iconRes = R.drawable.ic_cloud_off, fix = FixAction.RETRY_CLOUD)
+                base.copy(detail = "${s.reason}. Tap to retry", stateLabel = "Offline", tone = Tone.WARNING, iconRes = R.drawable.ic_cloud_off, fix = FixAction.RETRY_CLOUD)
         }
     }
 }

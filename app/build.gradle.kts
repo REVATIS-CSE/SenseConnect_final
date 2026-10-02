@@ -2,10 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
-// Base URL of the SenseConnect backend hosted on Render.
-// Override without editing code:  ./gradlew assembleDebug -Psenseconnect.apiBaseUrl=https://example.onrender.com/
-val apiBaseUrl: String = providers.gradleProperty("senseconnect.apiBaseUrl")
-    .getOrElse("https://senseconnect-api.onrender.com/")
+// Production SenseConnect backend (Render). Release builds always use this, over HTTPS.
+val productionApiBaseUrl = "https://senseconnect-api.onrender.com/"
+
+// Debug builds use production too, unless a developer points them at a local server:
+//   ./gradlew assembleDebug -Psenseconnect.devApiBaseUrl=http://10.0.2.2:3000/
+// (cleartext to 10.0.2.2/localhost is permitted only by src/debug/res/xml/network_security_config.xml)
+val debugApiBaseUrl: String = providers.gradleProperty("senseconnect.devApiBaseUrl")
+    .getOrElse(productionApiBaseUrl)
 
 android {
     namespace = "com.example.senseconnect"
@@ -28,14 +32,17 @@ android {
         versionCode = 2
         versionName = "2.0.0"
 
-        buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
 
         testInstrumentationRunner =
             "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_BASE_URL", "\"$debugApiBaseUrl\"")
+        }
         release {
+            buildConfigField("String", "API_BASE_URL", "\"$productionApiBaseUrl\"")
             optimization {
                 enable = false
             }

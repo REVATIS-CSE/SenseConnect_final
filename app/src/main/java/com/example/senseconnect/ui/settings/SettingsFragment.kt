@@ -374,7 +374,8 @@ class SettingsFragment : Fragment() {
         val (tone, label) = when {
             !online -> Tone.NEUTRAL to getString(R.string.cloud_offline)
             status is BackendStatus.Online -> Tone.SUCCESS to getString(R.string.cloud_online_ms, status.latencyMs)
-            status is BackendStatus.Offline -> Tone.NEUTRAL to getString(R.string.cloud_unreachable)
+            status is BackendStatus.Offline -> Tone.WARNING to getString(R.string.cloud_unreachable)
+            status is BackendStatus.Waking -> Tone.INFO to getString(R.string.cloud_waking)
             else -> Tone.INFO to getString(R.string.cloud_checking)
         }
         binding.rowBackend.summary.text = getString(R.string.cloud_summary, container.backend.baseUrl.removePrefix("https://").trimEnd('/'))

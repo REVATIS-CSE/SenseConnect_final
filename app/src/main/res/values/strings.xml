@@ -39,9 +39,10 @@
     <string name="hero_ready_body">All %1$d assistive services are available. Core features work offline.</string>
     <string name="hero_attention_title">Attention needed</string>
     <string name="hero_attention_body">%1$d service(s) need attention. See Service status below.</string>
-    <string name="cloud_online">Cloud online</string>
-    <string name="cloud_checking">Checking cloud</string>
-    <string name="cloud_offline">Offline</string>
+    <string name="cloud_online">Cloud Online</string>
+    <string name="cloud_checking">Connecting…</string>
+    <string name="cloud_waking">Waking server…</string>
+    <string name="cloud_offline">Cloud Offline</string>
     <string name="cd_cloud_status">SenseConnect Cloud status: %1$s</string>
     <string name="section_services">Assistive services</string>
     <string name="section_quick_actions">Quick actions</string>
