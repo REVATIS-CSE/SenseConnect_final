@@ -4,6 +4,11 @@
 
 SenseConnect is an integrated assistive-technology platform for Android that brings **vision**, **hearing** and **speech/communication** assistance together with **emergency SOS** in a single accessible mobile app, backed by a small cloud API hosted on Render.
 
+**Platforms**
+- **Android**: the main app, in `app/`. Built, tested, and installable as an APK.
+- **iPhone**: a native SwiftUI version in [`ios/`](ios/README.md) with the same features and the same Render backend. It must be built in Xcode on a Mac and has not been compiled yet.
+- **Backend**: Node.js + Express in `backend/`, deployed to Render.
+
 ---
 
 ## 1. Problem statement
@@ -231,5 +236,6 @@ To update later, install the new APK the same way; your settings and history are
 - Object and currency recognition in Vision; document layout reading.
 - Sound-event alerts (doorbell, alarm, baby crying) for deaf users.
 - Multi-language UI, OCR scripts and phrase boards.
+- Finish the iPhone version: compile and test it on a Mac, then distribute it through TestFlight.
 - Durable incident storage with an authenticated caregiver dashboard.
 - Background SOS trigger (power-button / shake) via a foreground service.
