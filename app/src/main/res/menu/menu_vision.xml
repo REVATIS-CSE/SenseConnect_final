@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_torch"
+        android:icon="@drawable/ic_flash_off"
+        android:title="@string/torch_on"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_gallery"
+        android:icon="@drawable/ic_document_scanner"
+        android:title="@string/scan_from_gallery"
+        app:showAsAction="never" />
+</menu>

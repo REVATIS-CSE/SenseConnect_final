@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SenseConnect semantic colour system (dark). Tuned for contrast, not simply inverted. -->
+<resources>
+    <color name="sc_primary">#B4BCFF</color>
+    <color name="sc_on_primary">#1A1760</color>
+    <color name="sc_primary_container">#312E81</color>
+    <color name="sc_on_primary_container">#E4E6FF</color>
+
+    <color name="sc_secondary">#6EE7D6</color>
+    <color name="sc_on_secondary">#022C28</color>
+    <color name="sc_secondary_container">#134E4A</color>
+    <color name="sc_on_secondary_container">#D2F5EF</color>
+
+    <color name="sc_tertiary">#A3C6FF</color>
+    <color name="sc_on_tertiary">#0B2A5B</color>
+    <color name="sc_tertiary_container">#1E3A7A</color>
+    <color name="sc_on_tertiary_container">#DCE8FF</color>
+
+    <color name="sc_success">#5BE08A</color>
+    <color name="sc_on_success">#052E16</color>
+    <color name="sc_success_container">#14532D</color>
+    <color name="sc_on_success_container">#DCF7E3</color>
+
+    <color name="sc_warning">#FBC34A</color>
+    <color name="sc_on_warning">#451A03</color>
+    <color name="sc_warning_container">#6B3410</color>
+    <color name="sc_on_warning_container">#FEF0C7</color>
+
+    <color name="sc_emergency">#FF8A80</color>
+    <color name="sc_on_emergency">#4A0707</color>
+    <color name="sc_emergency_container">#7A1717</color>
+    <color name="sc_on_emergency_container">#FFE3E0</color>
+    <color name="sc_emergency_deep">#B42323</color>
+
+    <color name="sc_neutral">#9CA3AF</color>
+    <color name="sc_neutral_container">#2A303B</color>
+    <color name="sc_on_neutral_container">#E5E7EB</color>
+
+    <color name="sc_background">#0E1116</color>
+    <color name="sc_surface">#151922</color>
+    <color name="sc_surface_container_lowest">#0B0E13</color>
+    <color name="sc_surface_container_low">#141821</color>
+    <color name="sc_surface_container">#1A1F29</color>
+    <color name="sc_surface_container_high">#222834</color>
+    <color name="sc_surface_container_highest">#2B3240</color>
+    <color name="sc_on_surface">#E8EAF0</color>
+    <color name="sc_on_surface_variant">#AEB5C2</color>
+    <color name="sc_outline">#6B7385</color>
+    <color name="sc_outline_variant">#2C3340</color>
+
+    <color name="sc_splash_background">#1A1760</color>
+
+    <color name="sc_hc_background">#000000</color>
+    <color name="sc_hc_surface_container">#000000</color>
+    <color name="sc_hc_on_surface">#FFFFFF</color>
+    <color name="sc_hc_on_surface_variant">#F2F2F2</color>
+    <color name="sc_hc_outline">#FFFFFF</color>
+    <color name="sc_hc_outline_variant">#D1D5DB</color>
+    <color name="sc_hc_primary">#D6D9FF</color>
+    <color name="sc_hc_primary_container">#1E1B6B</color>
+</resources>

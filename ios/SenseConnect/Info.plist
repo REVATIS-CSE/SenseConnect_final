@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>SenseConnect</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<!-- Permission explanations shown by iOS (same wording as the Android onboarding) -->
+	<key>NSCameraUsageDescription</key>
+	<string>SenseConnect uses the camera to recognise and read text aloud. Images are processed on your iPhone and never stored.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>SenseConnect uses the microphone to convert speech into readable text. Audio is never recorded or stored.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>SenseConnect converts nearby speech into live captions, on your iPhone whenever possible.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SenseConnect uses your location to share where you are during emergency assistance.</string>
+	<!-- HTTPS only: no App Transport Security exceptions are declared. -->
+</dict>
+</plist>

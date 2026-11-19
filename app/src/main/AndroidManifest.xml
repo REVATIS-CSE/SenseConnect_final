@@ -1,46 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- =============================== -->
-    <!-- Bluetooth permissions            -->
-    <!-- =============================== -->
-
-    <uses-permission
-        android:name="android.permission.BLUETOOTH_SCAN"
-        android:usesPermissionFlags="neverForLocation" />
-
-    <uses-permission
-        android:name="android.permission.BLUETOOTH_CONNECT" />
-
-
-    <!-- =============================== -->
-    <!-- Camera permission                 -->
-    <!-- Used by Vision Assistance         -->
-    <!-- =============================== -->
-
-    <uses-permission
-        android:name="android.permission.CAMERA" />
-
-
-    <!-- =============================== -->
-    <!-- Microphone permission             -->
-    <!-- Used by Hearing Assistance       -->
-    <!-- =============================== -->
-
-    <uses-permission
-        android:name="android.permission.RECORD_AUDIO" />
-
-
-    <!-- =============================== -->
-    <!-- Application                       -->
-    <!-- =============================== -->
-
+    <!-- Vision Assistance: live camera preview + on-device OCR -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Hearing Assistance: live speech-to-text -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- SOS: real device location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- SOS: optional direct SMS (only when the user enables it in Settings) -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- Backend (Render) health checks, config and incident logging -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+    <!-- Package visibility (Android 11+) so we can detect speech-recognition / TTS engines -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="smsto" />
+        </intent>
+    </queries>
 
     <application
+        android:name=".SenseConnectApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -48,72 +46,54 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SenseConnect">
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/Theme.SenseConnect"
+        tools:targetApi="31">
 
-
-        <!-- =============================== -->
-        <!-- Main / Home Activity              -->
-        <!-- =============================== -->
-
+        <!-- Launcher: splash screen → dashboard (Home / Activity / Settings) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
+            android:theme="@style/Theme.SenseConnect.Starting"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
-
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-
-        <!-- =============================== -->
-        <!-- Vision Assistance                 -->
-        <!-- Camera + OCR                      -->
-        <!-- =============================== -->
-
+        <!-- First-launch onboarding + contextual permissions -->
         <activity
-            android:name=".BlindActivity"
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
+
+        <!-- Vision Assistance: camera → OCR → read aloud -->
+        <activity
+            android:name=".ui.vision.VisionActivity"
             android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <!-- Hearing Assistance: microphone → speech recognition → captions -->
+        <activity
+            android:name=".ui.hearing.HearingActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
-
-        <!-- =============================== -->
-        <!-- Hearing Assistance                -->
-        <!-- Speech to Text                    -->
-        <!-- =============================== -->
-
+        <!-- Communication: phrase board → text-to-speech -->
         <activity
-            android:name=".DeafActivity"
+            android:name=".ui.communication.CommunicationActivity"
             android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
-
-        <!-- =============================== -->
-        <!-- Communication                    -->
-        <!-- Text to Speech                    -->
-        <!-- =============================== -->
-
+        <!-- SOS Emergency: location → message → SMS / call / share -->
         <activity
-            android:name=".SpeechActivity"
+            android:name=".ui.emergency.EmergencyActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-
-        <!-- =============================== -->
-        <!-- SOS Emergency                    -->
-        <!-- =============================== -->
-
-        <activity
-            android:name=".EmergencyActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/Theme.SenseConnect.Emergency" />
 
     </application>
-
 </manifest>

@@ -1,9 +1,98 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- ============================================================ -->
+    <!-- Application theme. Colour roles resolve to values/ or        -->
+    <!-- values-night/ colours automatically (DayNight).              -->
+    <!-- ============================================================ -->
     <style name="Base.Theme.SenseConnect" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/sc_primary</item>
+        <item name="colorOnPrimary">@color/sc_on_primary</item>
+        <item name="colorPrimaryContainer">@color/sc_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/sc_on_primary_container</item>
+        <item name="colorSecondary">@color/sc_secondary</item>
+        <item name="colorOnSecondary">@color/sc_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/sc_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/sc_on_secondary_container</item>
+        <item name="colorTertiary">@color/sc_tertiary</item>
+        <item name="colorOnTertiary">@color/sc_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/sc_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/sc_on_tertiary_container</item>
+        <item name="colorError">@color/sc_emergency</item>
+        <item name="colorOnError">@color/sc_on_emergency</item>
+        <item name="colorErrorContainer">@color/sc_emergency_container</item>
+        <item name="colorOnErrorContainer">@color/sc_on_emergency_container</item>
+
+        <item name="android:colorBackground">@color/sc_background</item>
+        <item name="colorOnBackground">@color/sc_on_surface</item>
+        <item name="colorSurface">@color/sc_surface</item>
+        <item name="colorOnSurface">@color/sc_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/sc_on_surface_variant</item>
+        <item name="colorSurfaceContainerLowest">@color/sc_surface_container_lowest</item>
+        <item name="colorSurfaceContainerLow">@color/sc_surface_container_low</item>
+        <item name="colorSurfaceContainer">@color/sc_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/sc_surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/sc_surface_container_highest</item>
+        <item name="colorOutline">@color/sc_outline</item>
+        <item name="colorOutlineVariant">@color/sc_outline_variant</item>
+
+        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.SenseConnect.Small</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.SenseConnect.Medium</item>
+        <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.SenseConnect.Large</item>
+
+        <item name="materialCardViewStyle">@style/Widget.SenseConnect.Card</item>
+        <item name="materialButtonStyle">@style/Widget.SenseConnect.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.SenseConnect.Button.Outlined</item>
+        <item name="borderlessButtonStyle">@style/Widget.SenseConnect.Button.Text</item>
+        <item name="chipStyle">@style/Widget.SenseConnect.Chip</item>
+        <item name="bottomNavigationStyle">@style/Widget.SenseConnect.BottomNavigation</item>
+        <item name="toolbarStyle">@style/Widget.SenseConnect.Toolbar</item>
+        <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
+        <item name="snackbarStyle">@style/Widget.Material3.Snackbar</item>
+
+        <item name="android:windowBackground">@color/sc_background</item>
     </style>
 
     <style name="Theme.SenseConnect" parent="Base.Theme.SenseConnect" />
+
+    <!-- Emergency screens: primary colour role becomes emergency red. -->
+    <style name="Theme.SenseConnect.Emergency">
+        <item name="colorPrimary">@color/sc_emergency</item>
+        <item name="colorOnPrimary">@color/sc_on_emergency</item>
+        <item name="colorPrimaryContainer">@color/sc_emergency_container</item>
+        <item name="colorOnPrimaryContainer">@color/sc_on_emergency_container</item>
+    </style>
+
+    <!-- Camera screen: always dark chrome around the live preview. -->
+    <style name="Theme.SenseConnect.Camera" />
+
+    <!-- Splash screen (androidx.core:core-splashscreen) -->
+    <style name="Theme.SenseConnect.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/sc_splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_mark</item>
+        <item name="windowSplashScreenAnimationDuration">400</item>
+        <item name="postSplashScreenTheme">@style/Theme.SenseConnect</item>
+    </style>
+
+    <!-- High-contrast overlay applied at runtime from Settings. -->
+    <style name="ThemeOverlay.SenseConnect.HighContrast" parent="">
+        <item name="android:colorBackground">@color/sc_hc_background</item>
+        <item name="android:windowBackground">@color/sc_hc_background</item>
+        <item name="colorSurface">@color/sc_hc_background</item>
+        <item name="colorSurfaceContainerLowest">@color/sc_hc_surface_container</item>
+        <item name="colorSurfaceContainerLow">@color/sc_hc_surface_container</item>
+        <item name="colorSurfaceContainer">@color/sc_hc_surface_container</item>
+        <item name="colorOnSurface">@color/sc_hc_on_surface</item>
+        <item name="colorOnBackground">@color/sc_hc_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/sc_hc_on_surface_variant</item>
+        <item name="colorOutline">@color/sc_hc_outline</item>
+        <item name="colorOutlineVariant">@color/sc_hc_outline_variant</item>
+        <item name="colorPrimary">@color/sc_hc_primary</item>
+        <item name="colorPrimaryContainer">@color/sc_hc_primary_container</item>
+        <item name="materialCardViewStyle">@style/Widget.SenseConnect.Card.HighContrast</item>
+    </style>
+
+    <style name="ThemeOverlay.SenseConnect.HighContrast.Emergency">
+        <item name="colorPrimary">@color/sc_emergency</item>
+        <item name="colorPrimaryContainer">@color/sc_emergency_container</item>
+    </style>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PRODUCTION: HTTPS only, no exceptions. All backend traffic goes to
+     https://senseconnect-api.onrender.com/ (see BuildConfig.API_BASE_URL). -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

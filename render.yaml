@@ -1,0 +1,16 @@
+# Render Blueprint for the SenseConnect backend (the Android app itself runs on the phone).
+services:
+  - type: web
+    name: senseconnect-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: ANNOUNCEMENT
+        sync: false

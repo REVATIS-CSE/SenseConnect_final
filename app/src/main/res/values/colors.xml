@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    SenseConnect semantic colour system (light).
+    Every foreground/background pair below meets WCAG AA (4.5:1) for body text.
+    Dark equivalents live in values-night/colors.xml.
+-->
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand: deep indigo (primary) -->
+    <color name="sc_primary">#4338CA</color>
+    <color name="sc_on_primary">#FFFFFF</color>
+    <color name="sc_primary_container">#E4E6FF</color>
+    <color name="sc_on_primary_container">#1E1B4B</color>
+
+    <!-- Secondary: teal -->
+    <color name="sc_secondary">#0F766E</color>
+    <color name="sc_on_secondary">#FFFFFF</color>
+    <color name="sc_secondary_container">#D2F5EF</color>
+    <color name="sc_on_secondary_container">#042F2E</color>
+
+    <!-- Tertiary: blue (communication) -->
+    <color name="sc_tertiary">#1D5FC9</color>
+    <color name="sc_on_tertiary">#FFFFFF</color>
+    <color name="sc_tertiary_container">#DCE8FF</color>
+    <color name="sc_on_tertiary_container">#0B2A5B</color>
+
+    <!-- Status: success / warning / emergency / neutral -->
+    <color name="sc_success">#15803D</color>
+    <color name="sc_on_success">#FFFFFF</color>
+    <color name="sc_success_container">#DCF7E3</color>
+    <color name="sc_on_success_container">#052E16</color>
+
+    <color name="sc_warning">#B45309</color>
+    <color name="sc_on_warning">#FFFFFF</color>
+    <color name="sc_warning_container">#FEF0C7</color>
+    <color name="sc_on_warning_container">#451A03</color>
+
+    <color name="sc_emergency">#C62828</color>
+    <color name="sc_on_emergency">#FFFFFF</color>
+    <color name="sc_emergency_container">#FDE3E1</color>
+    <color name="sc_on_emergency_container">#5F0B0B</color>
+    <color name="sc_emergency_deep">#9F1C1C</color>
+
+    <color name="sc_neutral">#6B7280</color>
+    <color name="sc_neutral_container">#ECEEF2</color>
+    <color name="sc_on_neutral_container">#1F2937</color>
+
+    <!-- Surfaces & text -->
+    <color name="sc_background">#F5F6FA</color>
+    <color name="sc_surface">#FFFFFF</color>
+    <color name="sc_surface_container_lowest">#FFFFFF</color>
+    <color name="sc_surface_container_low">#F9FAFC</color>
+    <color name="sc_surface_container">#F0F2F7</color>
+    <color name="sc_surface_container_high">#E9ECF3</color>
+    <color name="sc_surface_container_highest">#E2E6EE</color>
+    <color name="sc_on_surface">#111827</color>
+    <color name="sc_on_surface_variant">#4B5563</color>
+    <color name="sc_outline">#9CA3AF</color>
+    <color name="sc_outline_variant">#E2E5EC</color>
+
+    <!-- Camera scanner overlay (same in both themes; sits on live video) -->
+    <color name="sc_scrim">#99000000</color>
+    <color name="sc_scan_frame">#FFFFFF</color>
+    <color name="sc_scan_frame_active">#4ADE80</color>
+
+    <!-- Splash / brand gradient -->
+    <color name="sc_brand_start">#3730A3</color>
+    <color name="sc_brand_end">#0F766E</color>
+    <color name="sc_splash_background">#2E2A8C</color>
+
+    <!-- High-contrast overrides -->
+    <color name="sc_hc_background">#FFFFFF</color>
+    <color name="sc_hc_surface_container">#FFFFFF</color>
+    <color name="sc_hc_on_surface">#000000</color>
+    <color name="sc_hc_on_surface_variant">#111111</color>
+    <color name="sc_hc_outline">#000000</color>
+    <color name="sc_hc_outline_variant">#1F2937</color>
+    <color name="sc_hc_primary">#2A2290</color>
+    <color name="sc_hc_primary_container">#D6D9FF</color>
 </resources>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Centralised typography, shapes and component styles for SenseConnect. All text uses sp so it follows
+     Android font scaling and the in-app Font Size setting. -->
+<resources>
+
+    <!-- ======================= Shapes ======================= -->
+    <style name="ShapeAppearance.SenseConnect.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">10dp</item>
+    </style>
+    <style name="ShapeAppearance.SenseConnect.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="ShapeAppearance.SenseConnect.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <!-- ======================= Typography ======================= -->
+    <style name="TextAppearance.SenseConnect.Display" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.ScreenTitle" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.SectionHeader" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Overline" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.15</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Supporting" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Status" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="TextAppearance.SenseConnect.Button" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <!-- Large caption text for live transcription and communication display -->
+    <style name="TextAppearance.SenseConnect.Caption.Live" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">26sp</item>
+        <item name="android:lineSpacingMultiplier">1.15</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <!-- ======================= Cards ======================= -->
+    <style name="Widget.SenseConnect.Card" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerLowest</item>
+        <item name="strokeColor">?attr/colorOutlineVariant</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Large</item>
+    </style>
+    <style name="Widget.SenseConnect.Card.HighContrast">
+        <item name="strokeColor">?attr/colorOutline</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+    <style name="Widget.SenseConnect.Card.Filled" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainer</item>
+        <item name="cardElevation">0dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Large</item>
+    </style>
+
+    <!-- ======================= Buttons ======================= -->
+    <style name="Widget.SenseConnect.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Button</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Medium</item>
+        <item name="iconPadding">10dp</item>
+    </style>
+    <style name="Widget.SenseConnect.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Button</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Medium</item>
+        <item name="iconPadding">10dp</item>
+    </style>
+    <style name="Widget.SenseConnect.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Button</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Medium</item>
+        <item name="strokeColor">?attr/colorOutline</item>
+        <item name="iconPadding">10dp</item>
+    </style>
+    <style name="Widget.SenseConnect.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Button</item>
+    </style>
+    <style name="Widget.SenseConnect.Button.Emergency" parent="Widget.SenseConnect.Button">
+        <item name="backgroundTint">@color/sc_emergency</item>
+        <item name="android:textColor">@color/sc_on_emergency</item>
+        <item name="iconTint">@color/sc_on_emergency</item>
+    </style>
+    <!-- Square-ish icon+label action used in action rows -->
+    <style name="Widget.SenseConnect.Button.Action" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Button</item>
+        <item name="android:textSize">14sp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Medium</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">6dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+    </style>
+
+    <!-- Icon-only outlined button (always paired with contentDescription + tooltip) -->
+    <style name="Widget.SenseConnect.Button.IconOnly" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconSize">24dp</item>
+        <item name="strokeColor">?attr/colorOutline</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SenseConnect.Medium</item>
+    </style>
+
+    <!-- ======================= Misc ======================= -->
+    <style name="Widget.SenseConnect.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Status</item>
+        <item name="android:textSize">14sp</item>
+        <item name="chipMinHeight">40dp</item>
+    </style>
+    <style name="Widget.SenseConnect.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">?attr/colorSurfaceContainerLowest</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.SenseConnect.Status</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.SenseConnect.Status</item>
+    </style>
+    <style name="Widget.SenseConnect.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.SenseConnect.TitleLarge</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.SenseConnect.Caption</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
+    </style>
+
+    <!-- Section header helper -->
+    <style name="SenseConnect.SectionHeader" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">28dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.SectionHeader</item>
+        <item name="android:accessibilityHeading">true</item>
+    </style>
+
+    <!-- Status pill: dot + label, coloured at runtime by bindStatusPill(tone, label) -->
+    <style name="SenseConnect.StatusPill" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pill</item>
+        <item name="android:backgroundTint">@color/sc_neutral_container</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:drawableStart">@drawable/bg_dot</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Status</item>
+        <item name="android:textColor">@color/sc_on_neutral_container</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <!-- One step label inside a workflow pipeline, e.g. Camera > OCR > Speech -->
+    <style name="SenseConnect.PipelineStep" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pill</item>
+        <item name="android:backgroundTint">?attr/colorSurfaceContainer</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.SenseConnect.Caption</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- Rounded icon tile used across cards -->
+    <style name="SenseConnect.IconTile" parent="">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:importantForAccessibility">no</item>
+    </style>
+</resources>
